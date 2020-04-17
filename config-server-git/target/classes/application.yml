@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: config-server-git
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/smile-vi/test.git # 配置git仓库的地址
+          # 开启启动时直接从git获取配置
+          clone-on-start: true
+          search-paths: test # git仓库地址下的相对地址，可以配置多个，用,分割。
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+server:
+  port: 9000
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
